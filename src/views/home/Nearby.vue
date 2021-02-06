@@ -29,13 +29,13 @@ export default {
     const nearbyList = [{
       id: 1,
       title: '沃尔玛',
-      imgUrl: '../../assets/沃尔玛-01.png',
+      imgUrl: 'https://i.loli.net/2021/02/04/MoXVKJGjms1Pv2Q.png',
       tags: ['月售出1w+', '起送0¥', '基础运费¥5'],
       desc: 'vip享受满98元减4元优惠(每月3张'
     }, {
       id: 2,
       title: '新世纪百货',
-      imgUrl: '../../assets/新世纪百货.jpeg',
+      imgUrl: 'https://i.loli.net/2021/02/04/H4rsWQpv675kgMe.jpg',
       tags: ['月售出1w+', '起送0¥', '基础运费¥5'],
       desc: 'vip享受满98元减4元优惠(每月3张'
     }]
@@ -44,7 +44,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../style/viriables.scss';
 @import '../../style/mixins.scss';
 .nearby {
