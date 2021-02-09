@@ -4,41 +4,43 @@
         <div
         class="nearby__item"
         v-for="item in nearbyList"
-        :key="item.id"
+        :key="item._id"
         >
         <img :src="item.imgUrl" class="nearby__item__img">
         <div class="nearby__content">
-        <div class="nearby__content__title">{{item.title}}</div>
+        <div class="nearby__content__title">{{item.name}}</div>
         <div class="nearby__content__tags">
-            <span
-              class="nearby__content__tag"
-              v-for="(innerItem, innerIndex) in item.tags"
-              :key="innerIndex"
-              >{{innerItem}}</span>
+          <span class="nearby__content__tag">月售：{{item.sales}}</span>
+          <span class="nearby__content__tag">起送：{{item.expressLimit}}</span>
+          <span class="nearby__content__tag">基础运费：{{item.expressPrice}}</span>
+
         </div>
-        <p class="nearby__content__highlight">{{item.desc}}</p>
+        <p class="nearby__content__highlight">{{item.slogan}}</p>
         </div>
       </div>
     </div>
 </template>
 
 <script>
+import { ref } from 'vue'
+import { get } from '../../utils/request'
+
+const useNearbyListEffect = () => {
+  const nearbyList = ref([])
+  const getNearbyList = async () => {
+    const result = await get('/api/shop/hot-list')
+    if (result?.errno === 0 && result?.data?.length) {
+      nearbyList.value = result.data
+    }
+  }
+  return { nearbyList, getNearbyList }
+}
+
 export default {
   name: 'Nearby',
   setup () {
-    const nearbyList = [{
-      id: 1,
-      title: '沃尔玛',
-      imgUrl: 'https://i.loli.net/2021/02/04/MoXVKJGjms1Pv2Q.png',
-      tags: ['月售出1w+', '起送0¥', '基础运费¥5'],
-      desc: 'vip享受满98元减4元优惠(每月3张'
-    }, {
-      id: 2,
-      title: '新世纪百货',
-      imgUrl: 'https://i.loli.net/2021/02/04/H4rsWQpv675kgMe.jpg',
-      tags: ['月售出1w+', '起送0¥', '基础运费¥5'],
-      desc: 'vip享受满98元减4元优惠(每月3张'
-    }]
+    const { nearbyList, getNearbyList } = useNearbyListEffect()
+    getNearbyList()
     return { nearbyList }
   }
 }
