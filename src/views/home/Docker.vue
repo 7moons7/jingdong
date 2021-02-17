@@ -2,7 +2,7 @@
     <div class="docker">
         <div
         v-for="(item, index) in dockerList"
-        :class="{'docker__item': ture, 'docker__item--active': index === 0}"
+        :class="{'docker__item': true, 'docker__item--active': index === 0}"
         class="docker__item"
         :key="item.icon" >
         <div class="iconfont" v-html="item.icon" />

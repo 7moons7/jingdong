@@ -86,8 +86,8 @@ export default {
 }
 .search {
   line-height: .32rem;
-  background-color: #f5f5f5;
-  color: #b7b7b7;
+  background-color: $search-bgcolor;
+  color: $search-fontcolor;
   border-radius: .16rem;
   font-size: .14rem;
   .iconfont {
