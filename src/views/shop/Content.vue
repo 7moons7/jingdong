@@ -1,21 +1,19 @@
 <template>
   <div class="content">
     <div class="content__left">
-      <div class="category category--active">全部商品</div>
-      <div class="category">秒杀</div>
-      <div class="category">新鲜水果</div>
-      <div class="category">蔬菜时令</div>
-      <div class="category">肉蛋家禽</div>
+      <div :class="{'category': true, 'category--active': currentTab === item.tab}" v-for="item in categories" :key="item.name"
+      @click="() => handleCategoryClick(item.tab)"
+      >{{item.name}}</div>
     </div>
     <div class="content__right">
-      <div class="content__right__item">
-        <img class= "content__right__item__img" src="" alt="">
-        <div class="content__right__item__inf">
-          <h4 class= "item__title">番茄250g/份</h4>
-          <p class= "item__sells">月售10件</p>
+      <div class="content__right__item" v-for="item in List" :key="item._id">
+        <img class= "content__right__item__img" src="#" >
+        <div class="item__inf">
+          <h4 class= "item__title">{{item.name}}</h4>
+          <p class= "item__sells">月售 {{item.sales}} 件</p>
           <p class="item__price">
-            <span class="item__price__yen">&yen;</span>33.6
-            <span class="item__origin">&yen;66.6</span>
+            <span class="item__price__yen">&yen;</span> {{item.price}}
+            <span class="item__origin">&yen;{{item.orginprice}}</span>
           </p>
         </div>
         <div class="content__right__button">
@@ -29,12 +27,48 @@
 </template>
 
 <script>
+import { reactive, toRefs } from 'vue'
+import { get } from '../../utils/request'
 export default {
-
+  name: 'Content',
+  setup () {
+    const categories = [{
+      name: '全部商品',
+      tab: 'all'
+    }, {
+      name: '秒杀',
+      tab: 'seckill'
+    }, {
+      name: '新鲜水果',
+      tab: 'fruit'
+    }, {
+      name: '蔬菜时令',
+      tab: 'vegetable'
+    }, {
+      name: '肉蛋家禽',
+      tab: 'meat'
+    }]
+    const data = reactive({ currentTab: categories[0].tab, List: [] })
+    const getContentData = async (tab) => {
+      const result = await get('api/shop/1/products', { tab })
+      if (result?.errno === 0 && result?.data?.length) {
+        data.List = result.data
+      }
+    }
+    const handleCategoryClick = (tab) => {
+      getContentData(tab)
+      data.currentTab = tab
+    }
+    getContentData('all')
+    const { List, currentTab } = toRefs(data)
+    return { categories, List, handleCategoryClick, currentTab }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../../style/viriables.scss';
+@import '../../style/mixins.scss';
 .content {
   display: flex;
   position: absolute;
@@ -48,16 +82,16 @@ export default {
   overflow-y: scroll;
   height: 100%;
   width: .76rem;
-  background: #f5f5f5;
+  background: $search-bgcolor;
 }
 
 .category {
   line-height: .4rem;
   text-align: center;
   font-size: .14rem;
-  color: #333;
+  color: $content-fontcolor;
   &--active {
-    background: #fff;
+    background: $white-bgcolor;
   }
 }
 
@@ -69,7 +103,8 @@ export default {
     display: flex;
     padding: .12rem 0;
     margin: 0 .16rem;
-    border-bottom: .01rem solid #f1f1f1;
+    border-bottom: .01rem solid $content-bgcolor;
+    overflow: hidden;
     &__img {
       width: 0.68rem;
       height: 0.68rem;
@@ -95,7 +130,7 @@ export default {
     &__plus {
       width: .21rem;
       height: .21rem;
-      color: #fff;
+      color: $white-bgcolor;
       background: #0091ff;
       border: none;
     }
@@ -103,25 +138,28 @@ export default {
 }
 
 .item  {
+  &__inf {
+      overflow: hidden;
+    }
   &__title {
-    flex: 1;
     display: flex;
     line-height: 0.2rem;
     font-size: .14rem;
-    color: #333;
+    color: $content-fontcolor;
     margin: 0;
+    @include ellipsis;
   }
   &__sells {
     margin: .06rem 0;
     line-height: .2rem;
     font-size: .14rem;
-    color: #333;
+    color: $content-fontcolor;
   }
   &__price {
     margin: 0;
     line-height: .2rem;
     font-size: .14rem;
-    color: #E93b3b;
+    color: $highlight-fontcolor;
     &__yen {
       font-size: .12rem;
     }
