@@ -9,6 +9,7 @@
     </div>
     <Shopinfor :item = "item" :hideBorder = "true" v-show = "item.imgUrl"/>
     <Content />
+    <Cart />
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { get } from '../../utils/request'
 import Shopinfor from '../../components/Shopinfor'
 import Content from './Content'
+import Cart from './Cart'
 
 //用来获取当前的商铺信息，由于是模拟数据，后台只有一个id数据
 const useShopInfoEffect = () => {
@@ -45,7 +47,7 @@ const useBackRouterEffect = () => {
 
 export default {
   name: 'Shop',
-  components: { Shopinfor, Content },
+  components: { Shopinfor, Content, Cart },
   setup() {
     const { item, getitemdata } = useShopInfoEffect()
     const handleBackClick = useBackRouterEffect()
