@@ -17,9 +17,9 @@
           </p>
         </div>
         <div class="content__right__button">
-          <span class="content__right__button__minus">-</span>
-            {{cartList?.[shopId]?.[item._id]?.count || 0}}
-          <span class="content__right__button__plus" @click="() => { addItemToCart(shopId, item._id, item) }">+</span>
+          <span class="content__right__button__minus" @click="() => { addOrminusItemToCart(shopId, item._id, item, -1)}">-</span>
+            {{item.count || 0}}
+          <span class="content__right__button__plus" @click="() => { addOrminusItemToCart(shopId, item._id, item, 1) }">+</span>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
 import { reactive, toRefs, ref, watchEffect } from 'vue'
 import { get } from '../../utils/request'
 import { useRoute } from 'vue-router'
-import { useStore } from 'vuex'
+import { useComCartEffect } from './commoncodeofcart'
 
 const categories = [{
   name: '全部商品',
@@ -74,18 +74,6 @@ const useCurrentList = (currentTab, shopId) => {
   return { list }
 }
 
-// 添加到购物车与购物车逻辑
-const useCartEffect = () => {
-  const store = useStore()
-  const { cartList } = toRefs(store.state)
-  const addItemToCart = (shopId, productId, productInfo) => {
-    store.commit('addItemToCart', {
-      shopId, productId, productInfo
-    })
-  }
-  return { cartList, addItemToCart }
-}
-
 export default {
   name: 'Content',
   setup () {
@@ -93,8 +81,8 @@ export default {
     const shopId = route.params.id
     const { currentTab, handleTabClick } = useTabEffect()
     const { list } = useCurrentList(currentTab, shopId)
-    const { cartList, addItemToCart } = useCartEffect()
-    return { categories, list, currentTab, handleTabClick, cartList, shopId, addItemToCart }
+    const { addOrminusItemToCart } = useComCartEffect()
+    return { categories, list, currentTab, handleTabClick, shopId, addOrminusItemToCart }
   }
 }
 </script>

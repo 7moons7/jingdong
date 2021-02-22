@@ -1,11 +1,12 @@
+/* 使用的是免费icon网站iconfont的素材 */
 @font-face {
   font-family: 'iconfont';  /* project id 2361677 */
-  src: url('//at.alicdn.com/t/font_2361677_fzq5wdwm11m.eot');
-  src: url('//at.alicdn.com/t/font_2361677_fzq5wdwm11m.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_2361677_fzq5wdwm11m.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_2361677_fzq5wdwm11m.woff') format('woff'),
-  url('//at.alicdn.com/t/font_2361677_fzq5wdwm11m.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_2361677_fzq5wdwm11m.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_2361677_nzsym8g038.eot');
+  src: url('//at.alicdn.com/t/font_2361677_nzsym8g038.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_2361677_nzsym8g038.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_2361677_nzsym8g038.woff') format('woff'),
+  url('//at.alicdn.com/t/font_2361677_nzsym8g038.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_2361677_nzsym8g038.svg#iconfont') format('svg');
 }
   
   .iconfont {

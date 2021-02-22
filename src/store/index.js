@@ -22,7 +22,7 @@ export default Vuex.createStore({
   },
   mutations: {
     // 判断是否存在shopifo和product，如果没有，让product.count=0 再加1
-    addItemToCart (state, payload) {
+    addOrminusItemToCart (state, payload) {
       const { shopId, productId, productInfo } = payload
       let shopInfo = state.cartList[shopId]
       if (!shopInfo) { shopInfo = {} }
@@ -30,10 +30,19 @@ export default Vuex.createStore({
       if (!product) {
         product = productInfo
         product.count = 0
+        product.check = 0
       }
-      product.count += 1
+      product.count = product.count + payload.num
+      if (payload.num > 0) { product.check = true }
+      if (product.count < 0) { product.count = 0 }
       shopInfo[productId] = product
       state.cartList[shopId] = shopInfo
+    },
+
+    changeCartstate (state, payload) {
+      const { shopId, productId } = payload
+      const product = state.cartList[shopId][productId]
+      product.check = !product.check
     }
   },
   actions: {
