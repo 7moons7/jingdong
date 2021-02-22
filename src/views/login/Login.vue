@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* eslint-disable */
 <template>
     <div class="wraaper">
@@ -11,10 +12,24 @@
         <div class="wrapper__loginbutton" @click="handleLogin">登陆</div>
         <div class="wrapper__loginregister" @Click="handleRegisterClick">立刻注册</div>
         <Toast v-if="show" :message="toastMessage" />
+=======
+<template>
+    <div class="wraaper">
+        <img class="wrapper__img" src="https://i.loli.net/2021/02/05/m5WqhIvj6lVkYft.png" alt="">
+        <div class="wrapper__input">
+            <input class="wrapper__input__content" placeholder="请输入手机号"  />
+        </div>
+        <div class="wrapper__input">
+            <input class="wrapper__input__content" placeholder="请输入密码" type="password" />
+        </div>
+        <div class="wrapper__loginbutton" @click="handleLogin">登陆</div>
+        <div class="wrapper__loginregister">立刻注册</div>
+>>>>>>> origin/master
     </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 import { reactive, toRefs } from 'vue'
 import { useRouter } from 'vue-router'
 import { post } from '../../utils/request'
@@ -60,6 +75,21 @@ export default {
     const { username, password, handleLogin } = useLoginEffect(showToast)
     const { handleRegisterClick } = useRegisterEffect()
     return { username, password, show, toastMessage, handleLogin, handleRegisterClick }
+=======
+import { useRouter } from 'vue-router'
+export default {
+  name: 'Login',
+  setup () {
+    const router = useRouter()
+    const handleLogin = () => {
+      localStorage.isLogin = true
+      router.push({ name: 'Home' })
+    }
+    const handleRegisterClick = () => {
+      router.push({ name: 'Register' })
+    }
+    return { handleLogin, handleRegisterClick }
+>>>>>>> origin/master
   }
 }
 </script>

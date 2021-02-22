@@ -2,6 +2,7 @@
     <div class="wraaper">
         <img class="wrapper__img" src="https://i.loli.net/2021/02/05/m5WqhIvj6lVkYft.png" alt="">
         <div class="wrapper__input">
+<<<<<<< HEAD
             <input class="wrapper__input__content" v-model="username" placeholder="请输入用户名"  />
         </div>
         <div class="wrapper__input">
@@ -13,11 +14,21 @@
         <div class="wrapper__registerbutton" @click="handleRegister">注册</div>
         <div class="wrapper__register" @click="handleLoginClick">已有账户 点此登陆</div>
         <Toast v-if="show" :message="toastMessage" />
+=======
+            <input class="wrapper__input__content" placeholder="请输入手机号"  />
+        </div>
+        <div class="wrapper__input">
+            <input class="wrapper__input__content" placeholder="请输入密码" type="password" />
+        </div>
+        <div class="wrapper__loginbutton" @click="handleLogin">注册</div>
+        <div class="wrapper__loginregister">立刻注册</div>
+>>>>>>> origin/master
     </div>
 </template>
 
 <script>
 import { useRouter } from 'vue-router'
+<<<<<<< HEAD
 import { reactive, toRefs } from 'vue'
 import { post } from '../../utils/request'
 import Toast, { useToastEffect } from '../../components/Toast'
@@ -64,6 +75,18 @@ export default {
   }
 }
 
+=======
+export default {
+  name: 'Register',
+  setup () {
+    const router = useRouter()
+    const handleLoginClick = () => {
+      router.push({ name: 'Login' })
+    }
+    return { handleLoginClick }
+  }
+}
+>>>>>>> origin/master
 </script>
 
 <style lang="scss" scoped>
@@ -98,7 +121,11 @@ export default {
             }
         }
     }
+<<<<<<< HEAD
     &__registerbutton {
+=======
+    &__loginbutton {
+>>>>>>> origin/master
         line-height: .48rem;
         margin: .32rem .4rem .16rem .4rem;
         background: #0091ff;
@@ -107,7 +134,11 @@ export default {
         font-size: .16rem;
         text-align: center;
     }
+<<<<<<< HEAD
     &__register {
+=======
+    &__loginregister {
+>>>>>>> origin/master
         text-align: center;
         font-size: .14rem;
         color: rgba(0,0,0,0.50);
