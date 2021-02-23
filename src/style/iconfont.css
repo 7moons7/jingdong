@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* 使用的是免费icon网站iconfont的素材 */
 @font-face {
   font-family: 'iconfont';  /* project id 2361677 */
@@ -8,16 +7,6 @@
   url('//at.alicdn.com/t/font_2361677_nzsym8g038.woff') format('woff'),
   url('//at.alicdn.com/t/font_2361677_nzsym8g038.ttf') format('truetype'),
   url('//at.alicdn.com/t/font_2361677_nzsym8g038.svg#iconfont') format('svg');
-=======
-@font-face {
-  font-family: 'iconfont';  /* project id 2361677 */
-  src: url('//at.alicdn.com/t/font_2361677_kukwqmyn448.eot');
-  src: url('//at.alicdn.com/t/font_2361677_kukwqmyn448.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_2361677_kukwqmyn448.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_2361677_kukwqmyn448.woff') format('woff'),
-  url('//at.alicdn.com/t/font_2361677_kukwqmyn448.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_2361677_kukwqmyn448.svg#iconfont') format('svg');
->>>>>>> origin/master
 }
   
   .iconfont {
